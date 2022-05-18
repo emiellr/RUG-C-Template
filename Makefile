@@ -1,11 +1,11 @@
 CC     = gcc
-CFLAGS = -std=c99 -pedantic -Wall
+CFLAGS = -std=c99 -pedantic -Wall -g
  
 main: *.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 debug: main
-	cat example_input1.txt | valgrind --leak-check=full ./main
+	cat tests/1.in | valgrind -s --leak-check=full ./main
 
 test: main
 	sh tests.sh
